@@ -1,0 +1,62 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Team {
+  id    Int    @id @default(autoincrement())
+  name  String
+  users User[]
+  tasks Task[]
+}
+
+model User {
+  id          Int              @id @default(autoincrement())
+  name        String
+  email       String
+  password    String
+  teamId      Int
+  team        Team             @relation(fields: [teamId], references: [id])
+  totalPoints Int              @default(0)
+  assignments TaskAssignment[]
+  points      UserPoint[]
+}
+
+model Task {
+  id          Int              @id @default(autoincrement())
+  name        String
+  team        Team?            @relation(fields: [teamId], references: [id])
+  teamId      Int
+  assignments TaskAssignment[]
+}
+
+model TaskStatus {
+  id          Int              @id @default(autoincrement())
+  status      String
+  assignments TaskAssignment[]
+}
+
+model TaskAssignment {
+  id       Int        @id @default(autoincrement())
+  task     Task       @relation(fields: [taskId], references: [id])
+  taskId   Int
+  user     User       @relation(fields: [userId], references: [id])
+  userId   Int
+  status   TaskStatus @relation(fields: [statusId], references: [id])
+  statusId Int
+}
+
+model UserPoint {
+  id        Int      @id @default(autoincrement())
+  user      User     @relation(fields: [userId], references: [id])
+  userId    Int
+  points    Int
+  createdAt DateTime @default(now())
+}

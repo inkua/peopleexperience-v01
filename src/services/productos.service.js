@@ -71,11 +71,9 @@ const productos = [
     }
 ];
 
-
 const getAllProducts=()=>{
     return productos
 }
-
 
 export {
     getAllProducts,
