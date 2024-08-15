@@ -18,6 +18,11 @@ model Team {
   tasks Task[]
 }
 
+enum UserType {
+  USER_ADMINISTRATOR
+  USER 
+}
+
 model User {
   id          Int              @id @default(autoincrement())
   name        String
@@ -26,6 +31,7 @@ model User {
   teamId      Int
   team        Team             @relation(fields: [teamId], references: [id])
   totalPoints Int              @default(0)
+  typeOfUser  UserType         @default(USER)
   assignments TaskAssignment[]
   points      UserPoint[]
 }
