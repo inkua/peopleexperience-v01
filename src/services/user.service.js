@@ -1,14 +1,35 @@
 import { prisma } from "@/libs/prisma";
 
+export const updateUser = async (id, data) => {
+    try {
+        const updatedUser = await prisma.user.update({
+            where: { id: id },
+            data: {
+                ...(data.name && { name: data.name }),
+                ...(data.email && { email: data.email }),
+                ...(data.password && { password: data.password }),
+                ...(data.teamId !== undefined && { teamId: Number(data.teamId) }),
+                ...(data.typeOfUser && { typeOfUser: data.typeOfUser }),
+            },
+        });
+        return updatedUser;
+    } catch (error) {
+        console.error("SERVICE: ", error);
+        throw new Error("Failed to update user");
+    }
+};
+
+
 export const createUser = async (data) => {
+    
     try {
         const newUser = await prisma.user.create({
             data: {
                 name: data.name,
                 email: data.email,
                 password: data.password,
-                teamId: data.teamId,
-                typeOfUser: data.typeOfUser || "USER",
+                teamId: Number(data.teamId),
+                typeOfUser: data.typeOfUser,
             },
         });
         return newUser;
