@@ -1,4 +1,7 @@
+import Pagination from "@/components/Pagination"
 
+import AddBtn from "../components/AddBtn/AddBtn"
+import Table from "../components/Table/Table"
 
 function Participants() {
     return (
@@ -10,8 +13,11 @@ function Participants() {
             </header>
             <main>
                 <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-                    Contenido de la página Participantes
+                    <AddBtn />
+                    <Table />
+                    <Pagination />
                 </div>
+
             </main>
         </>
     )

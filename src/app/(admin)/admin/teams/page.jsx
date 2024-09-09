@@ -1,5 +1,9 @@
 import React from 'react'
 
+import AddBtn from '../components/AddBtn/AddBtn'
+import Pagination from '../components/Pagination/Pagination'
+import Table from '../components/Table/Table'
+
 function Teams() {
     return (
         <>
@@ -10,7 +14,9 @@ function Teams() {
             </header>
             <main>
                 <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-                    Contenido de la página Equipos
+                    <AddBtn />
+                    <Table />
+                    <Pagination />
                 </div>
             </main>
         </>
