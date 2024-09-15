@@ -74,3 +74,16 @@ export const getUserById = async (id) => {
 
     return user;
 };
+
+
+export const deleteUser = async (id) => {
+    try {
+        const deletedUser = await prisma.user.delete({
+            where: { id: parseInt(id) },
+        });
+        return deletedUser;
+    } catch (error) {
+        console.error("SERVICE: ", error);
+        throw new Error("Failed to delete user");
+    }
+};
