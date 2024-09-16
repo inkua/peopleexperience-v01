@@ -2,9 +2,9 @@
 
 function layout({children}) {
   return (
-    <div>
+    <body>
       {children}
-    </div>
+    </body>
   )
 }
 
