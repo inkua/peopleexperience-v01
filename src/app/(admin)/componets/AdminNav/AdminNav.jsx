@@ -1,5 +1,5 @@
 'use client'
- 
+
 import { usePathname } from 'next/navigation'
 
 import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
@@ -16,7 +16,7 @@ const navigation = [
     { name: 'Dashboard', href: '/admin', current: true },
     { name: 'Participantes', href: '/admin/participants', current: false },
     { name: 'Equipos', href: '/admin/teams', current: false },
-    { name: 'Calendar', href: '#', current: false },
+    { name: 'Admins', href: '/admin/admins', current: false },
     { name: 'Reports', href: '#', current: false },
 ]
 const userNavigation = [
