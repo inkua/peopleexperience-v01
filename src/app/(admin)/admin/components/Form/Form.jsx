@@ -1,8 +1,54 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, useState } from 'react'
 
 const Form = ({ setOpen }) => {
 
     const handleClose = useCallback(() => setOpen(false), [setOpen]);
+
+    const [formData, setFormData] = useState({
+      name: '',
+      lastname: '',
+      email: '',
+    });
+
+    const handleChange = (e) => {
+      const { name, value} = e.target;
+      setFormData({
+        ...formData,
+        [name]: value
+      });
+    };
+
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+
+      const body = {
+        ...formData,
+        typeOfUser: 'USER',
+        password: 'defaultPassword123', // contraseña esporádica
+        teamId: 1,
+      }
+
+      try {
+        const response = await fetch("/api/participant", {
+          method: "POST",
+          headers: {
+            'Content-Type': "application/json"
+          },
+          body: JSON.stringify(body)
+        });
+
+        if(!response.ok) {
+          throw new Error(`ERROR HTTP: ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log("Participante creado", data);
+        handleClose();
+
+      } catch (error) {
+        console.log('Error al crear el participante:', error);
+      }
+    }
 
   return (
 <>
@@ -19,7 +65,7 @@ const Form = ({ setOpen }) => {
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form action="#" method="POST" className="space-y-6">
+          <form action="#" onSubmit={handleSubmit} method="POST" className="space-y-6">
             <div>
               <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
                 Dirección email
@@ -29,6 +75,8 @@ const Form = ({ setOpen }) => {
                   id="email"
                   name="email"
                   type="email"
+                  value={formData.email}
+                  onChange={handleChange}
                   required
                   autoComplete="email"
                   placeholder='johndoe@inkua.com'
@@ -53,6 +101,8 @@ const Form = ({ setOpen }) => {
                   id="name"
                   name="name"
                   type="text"
+                  value={formData.name}
+                  onChange={handleChange}
                   required
                   autoComplete="name"
                   placeholder='John'
@@ -76,6 +126,8 @@ const Form = ({ setOpen }) => {
                   id="lastname"
                   name="lastname"
                   type="text"
+                  value={formData.lastname}
+                  onChange={handleChange}
                   required
                   autoComplete="lastname"
                   placeholder='Doe'
