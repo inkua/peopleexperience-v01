@@ -1,8 +1,17 @@
-import ActionDropdown from '../../../components/ActionDropdown/ActionDropdown'
+'use client';
+import ActionDropdown from '../../../components/ActionDropdown/ActionDropdown';
+import {useRouter} from 'next/navigation';
 
 function AdminItemTable({admin}) {
+
+    const route = useRouter()
+
+    const handleAdminId = (e) => {
+        e.preventDefault();
+        route.push(`/admin/admins/${admin.id}`)
+    };
     return (
-        <tr className="overflow-y-scroll">
+        <tr className="overflow-y-scroll" onClick={handleAdminId} style={{ cursor: 'pointer'}}>
             <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
                 <div className="inline-flex items-center gap-x-3">
                     <div className="flex items-center gap-x-2">
