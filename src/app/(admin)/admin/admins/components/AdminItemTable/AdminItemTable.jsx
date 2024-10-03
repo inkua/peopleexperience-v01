@@ -11,7 +11,7 @@ function AdminItemTable({admin}) {
         route.push(`/admin/admins/${admin.id}`)
     };
     return (
-        <tr className="overflow-y-scroll" onClick={handleAdminId} style={{ cursor: 'pointer'}}>
+        <tr className="overflow-y-scroll">
             <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
                 <div className="inline-flex items-center gap-x-3">
                     <div className="flex items-center gap-x-2">
@@ -32,7 +32,7 @@ function AdminItemTable({admin}) {
             <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">{admin.email}</td>
             <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">{admin.team.name}</td>
             <td className="px-4 py-4 text-sm whitespace-nowrap relative inline-block text-left">
-                <ActionDropdown />
+                <ActionDropdown handleAdminId={handleAdminId} data={admin}/>
             </td>
         </tr>
     )

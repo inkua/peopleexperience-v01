@@ -31,10 +31,13 @@ function AdminTable({admins}) {
 
                             <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
 
-                                {/* Item List */}
-                                {
-                                    admins?.map((item, index) => <AdminItemTable key={item.id} admin={item}></AdminItemTable>)
-                                }
+                            {
+                            admins
+                                ?.sort((a, b) => a.id - b.id) // Ordenado por id
+                                .map((item) => (
+                                <AdminItemTable key={item.id} admin={item}></AdminItemTable>
+                                ))
+                            }
 
                             </tbody>
                         </table>
