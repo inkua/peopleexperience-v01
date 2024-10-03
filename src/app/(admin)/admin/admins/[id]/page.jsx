@@ -1,14 +1,13 @@
 export default async function AdminDetails({ params }) {
   const { id } = params;
 
-  const res = await fetch(`http://localhost:3000/api/admin/${id}`);
+  const res = await fetch(`http://localhost:3000/api/admin/${id}`, { cache: "no-store" });
   
   if (!res.ok) {
       return <div>Error cargando la data del admin</div>;
   }
   
   const data = await res.json();
-  console.log('Fetched data:', data);
 
   return (
   <div className="max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-lg" style={{ marginTop: '2rem' }}>

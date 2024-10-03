@@ -4,7 +4,7 @@ import AdminTable from './components/AdminTable/AdminTable'
 
 
 async function page({ searchParams }) {
-    const response = await fetch('http://localhost:3000/api/admin');
+    const response = await fetch('http://localhost:3000/api/admin', { cache: 'no-store'});
     const data = await response.json();
 
     const currentPage = searchParams.page || "1"
