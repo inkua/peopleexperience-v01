@@ -8,8 +8,8 @@ import Table from "../components/Table/Table"
 import Form from "../components/Form/Form"
 
 function Participants() {
-
     const [open, setOpen] = useState(false);
+    
 
     return (
         <>
