@@ -1,5 +1,5 @@
 import ItemTable from "../ItemTable/ItemTable"
-
+import GET from "@/app/api/participant/route"
 const headers = [
     {id:1, title:"filename"},
     {id:2, title:"File size"},
@@ -8,6 +8,10 @@ const headers = [
     {id:5, title:"Uploaded by"},
     {id:6, title:"Actions"},
 ]
+
+console.log(GET)
+
+
 
 function Table() {
 

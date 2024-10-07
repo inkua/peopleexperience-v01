@@ -1,7 +1,7 @@
 'use client'
 
 import { usePathname } from 'next/navigation'
-
+import logoInkua from "@/../public/auth/inkuaLogo.png"
 import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 
@@ -43,9 +43,9 @@ function AdminNav() {
                     <div className="flex items-center">
                         <div className="flex-shrink-0">
                             <img
-                                alt="Your Company"
-                                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-                                className="h-8 w-8"
+                                alt="InkuA"
+                                src={logoInkua.src}
+                                className="h-auto w-14"
                             />
                         </div>
                         <div className="hidden md:block">
